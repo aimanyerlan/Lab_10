@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { TodoList } from "./TodoList";
 
@@ -16,7 +16,7 @@ describe("TodoList Component", () => {
             ];
             render(<TodoList initialTodos={initialTodos} />);
 
-            expect(screen.getByText("test todo")).toBeInTheDocument();
+            expect(screen.getByText("Test todo")).toBeInTheDocument();
             expect(screen.getByText("1 todos (0 completed)")).toBeInTheDocument();
         });
     });
@@ -50,7 +50,6 @@ describe("TodoList Component", () => {
             const user = userEvent.setup();
             render(<TodoList />);
 
-            const input = screen.getByTestId("todo-input");
             const addButton = screen.getByTestId("add-button");
 
             await user.click(addButton);
@@ -67,7 +66,7 @@ describe("TodoList Component", () => {
             const checkbox = screen.getByTestId("todo-checkbox");
             await userEvent.click(checkbox);
 
-            const todoItem = screen.getBytestId("todo-item");
+            const todoItem = screen.getByTestId("todo-item");
             expect(todoItem).toHaveClass("completed");
         });
     });
@@ -87,7 +86,7 @@ describe("TodoList Component", () => {
     });
 
     describe("Counter", () => {
-        tets("updates counter when adding todos", async () => {
+        test("updates counter when adding todos", async () => {
             const user = userEvent.setup();
             render(<TodoList />);
 
